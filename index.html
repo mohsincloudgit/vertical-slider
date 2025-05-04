@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dual Vertical Opposite Sliders</title>
+
+    <!-- Slick CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <style>
+        body {
+            background: #111;
+            padding: 80px;
+            display: flex;
+            justify-content: center;
+            /* gap: 20px; */
+        }
+
+        .vertical-slider {
+            width: 200px;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .slide {
+            height: 80px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            opacity: 0.3;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .slide img {
+            width: auto;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .reverse-slider .slide img {
+            width: auto;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+            /* border: 1px solid #AAAAAA;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px; */
+        }
+
+        .slide.slick-slide.slick-current.slick-active.slick-center img {
+            border: 1px solid #AAAAAA;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+            border-radius: 10px;
+            opacity: 1;
+            transform: scale(1.1);
+
+            padding: 4px;
+            width: 120px;
+            height: 180px;
+        }
+
+        .slide.slick-center {
+            opacity: 1;
+            transform: scale(1.1);
+            /* padding: 10px;
+      justify-self: center; */
+            /* box-shadow: 0 0 20px #fff; */
+        }
+
+        /* Reverse slider container (for upward movement effect) */
+        .reverse-slider {
+            transform: rotate(0deg);
+        }
+
+        .reverse-slider .slide {
+            transform: rotate(360deg);
+            /* Re-rotate content back to normal */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Slider 1 (normal downward) -->
+    <div class="vertical-slider slider-one">
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+    </div>
+
+    <!-- Slider 2 (upward) -->
+    <div class="vertical-slider slider-two reverse-slider">
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+        <div class="slide"><img src="image/business-sol.png"></div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Slick JS -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        // $('.vertical-slider').slick({
+        //     vertical: true,
+        //     slidesToShow: 5,
+        //     centerMode: true,
+        //     centerPadding: '0px',
+        //     infinite: true,
+        //     initialSlide: Math.floor($('.vertical-slider .slide').length / 2), // Start from center
+        //     arrows: false,
+        //     autoplay: true,
+        //     autoplaySpeed: 2000,
+        //     focusOnSelect: true,
+        //     pauseOnHover: true
+        // });
+
+        // Normal downward slider
+        $('.slider-one').slick({
+            vertical: true,
+            slidesToShow: 4,
+            centerMode: true,
+            centerPadding: '0px',
+            infinite: true,
+            initialSlide: Math.floor($('.vertical-slider .slide').length / 4), // Start from center
+            initialSlide: 1,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 1000,
+            focusOnSelect: true,
+            pauseOnHover: true
+        });
+
+        // Upward reverse slider
+        $('.slider-two').slick({
+            vertical: true,
+            slidesToShow: 4,
+            centerMode: true,
+            centerPadding: '0px',
+            infinite: true,
+            initialSlide: Math.floor($('.vertical-slider .slide').length / 2), // Start from center
+            initialSlide: 3,
+            arrows: false,
+            autoplay: false, // custom autoplay below
+            autoplaySpeed: 1500,
+            focusOnSelect: true,
+            pauseOnHover: true
+        });
+
+
+        // Custom reverse autoplay (slider-two goes upward)
+        setInterval(() => {
+            $('.slider-two').slick('slickPrev');
+        }, 1500);
+
+
+
+
+    </script>
+</body>
+
+</html>
